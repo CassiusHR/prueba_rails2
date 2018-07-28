@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+            <% @tasks.each do |task| %>
+                <div class="col-md-3 p-2">
+                    <div class="card m-4">
+                        <div class="card-img-top" style="max-height:120px;overflow:hidden;"><%= image_tag task.photo, class: 'img-fluid' %></div>
+                        <div class="body">
+                            <h5><%= task.name %></h5>
+                            <% if Usertask.find_by(user_id: current_user.id, task_id: task.id, completed: true)%>
+                            <%= link_to "NO Realizar", task_usertasks_path(task), class: 'btn btn-danger', method: :post %>
+                            <% else %>
+                            <%= link_to "Realizar", task_usertasks_path(task), class: 'btn btn-success', method: :post %>     
+                            <% end %>                  
+                        </div>
+                    </div>
+                </div>
+        <% end %>
+    </div>
+</div>
+<table class="table">
+<% @usertasks.each do |usertask|%>
+<tr>
+    <td><%= usertask.task.name %></td>
+    <td><%= usertask.completed.to_s %></td>
+</tr>
+<% end %>
+</table>
