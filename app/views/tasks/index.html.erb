@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
             <% @tasks.each do |task| %>
-                <div class="col-md-3 p-2">
-                    <div class="card m-4">
-                        <div class="card-img-top" style="max-height:120px;overflow:hidden;"><%= image_tag task.photo, class: 'img-fluid' %></div>
-                        <div class="body">
+                <div class="col-md-4 p-2">
+                    <div class="card m-2">
+                        <div class="card-img-top" style="max-height:180px;overflow:hidden;"><%= image_tag task.photo, class: 'img-fluid', style: 'min-height: 180px' %></div>
+                        <div class="body p-3">
                             <h5><%= task.name %></h5>
                             <% if Usertask.find_by(user_id: current_user, task_id: task.id, completed: true)%>
                             <%= link_to "NO Realizar", task_usertasks_path(task), class: 'btn btn-danger', method: :post %>
@@ -17,11 +17,3 @@
         <% end %>
     </div>
 </div>
-<table class="table">
-<% @usertasks.each do |usertask|%>
-<tr>
-    <td><%= usertask.task.name %></td>
-    <td><%= usertask.completed.to_s %></td>
-</tr>
-<% end %>
-</table>

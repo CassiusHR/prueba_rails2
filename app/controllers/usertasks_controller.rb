@@ -11,7 +11,7 @@ class UsertasksController < ApplicationController
     end
   def index
     @tasks = Task.all
-    @usertasks = current_user.usertasks
+    @usertasks = current_user.usertask
   end
 end
 end
